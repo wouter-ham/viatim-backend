@@ -1,6 +1,7 @@
 import { Model } from 'objection';
 import { IPost } from '@viatim/core/interfaces/post';
 import path from 'path';
+import { User } from '@viatim/core/models/user';
 
 export class Post extends Model implements IPost {
   static tableName = 'posts';
@@ -27,4 +28,6 @@ export class Post extends Model implements IPost {
   public created: Date;
   public updated: Date;
   public deleted?: Date;
+
+  public user?: User;
 }

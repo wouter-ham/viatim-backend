@@ -4,12 +4,14 @@ import { EmailModule } from '@viatim/core/components/email/email.module';
 import dotenv from 'dotenv';
 import { ObjectionModule } from '@viatim/objection/objection.module';
 import { UsersModule } from '@viatim/core/components/users/users.module';
+import { PostsModule } from '@viatim/core/components/posts';
 
 dotenv.config();
 
 @Module({
   imports: [
     UsersModule,
+    PostsModule,
     EmailModule.register({
       global: true,
       host: process.env.EMAIL_HOST,
