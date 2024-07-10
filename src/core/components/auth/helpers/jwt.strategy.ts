@@ -1,7 +1,7 @@
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { PassportStrategy } from '@nestjs/passport';
 import { Injectable } from '@nestjs/common';
-import { JwtTokenDto } from '@viatim/auth/jwt-token.dto';
+import { JwtTokenDto } from '@viatim/core/components/auth/helpers/jwt-token.dto';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {

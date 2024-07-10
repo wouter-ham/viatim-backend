@@ -22,6 +22,8 @@ export class User extends Model implements IUser {
 
   public hash: string | null;
 
+  public created: Date;
+  public updated: Date;
   public deleted?: Date;
 
   public get fullName(): string {

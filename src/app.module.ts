@@ -1,18 +1,15 @@
 import { Module } from '@nestjs/common';
-
-import { UsersModule } from './users/users.module';
-import { AuthModule } from './auth/auth.module';
-import { SharedModule } from './shared/shared.module';
-import { CoreModule } from './core/core.module';
-import { EmailModule } from './email/email.module';
+import { AuthModule } from '@viatim/core/components/auth/auth.module';
+import { EmailModule } from '@viatim/core/components/email/email.module';
 import dotenv from 'dotenv';
 import { ObjectionModule } from '@viatim/objection/objection.module';
+import { UsersModule } from '@viatim/core/components/users/users.module';
 
 dotenv.config();
 
 @Module({
   imports: [
-    CoreModule,
+    UsersModule,
     EmailModule.register({
       global: true,
       host: process.env.EMAIL_HOST,
@@ -43,9 +40,6 @@ dotenv.config();
         connectTimeout: 60000,
       },
     }),
-    UsersModule,
-    SharedModule,
-    CoreModule,
   ],
 })
 export class AppModule {}

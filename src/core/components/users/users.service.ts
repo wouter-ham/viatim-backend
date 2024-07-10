@@ -14,8 +14,6 @@ export class UsersService {
   }
 
   public findByEmail(email: string): QueryBuilder<User, User> {
-    console.log('email');
-    console.log(email);
     return User.query().where({ email }).first();
   }
 

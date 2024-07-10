@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { createTransport, Transporter } from 'nodemailer';
 import { join, resolve } from 'path';
 import hbs from 'nodemailer-express-handlebars';
-import { EmailModuleOptions } from '../email-module.options';
+import { EmailModuleOptions } from './email-module.options';
 
 @Injectable()
 export class EmailService {

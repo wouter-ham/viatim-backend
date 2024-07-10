@@ -3,8 +3,8 @@ import { JwtService, JwtSignOptions } from '@nestjs/jwt';
 import { compareSync } from 'bcrypt';
 
 import { IUser } from '@viatim/core/interfaces';
-import { UsersService } from '@viatim/core/services';
 import { User } from '@viatim/core/models';
+import { UsersService } from '@viatim/core/components/users/users.service';
 
 @Injectable()
 export class AuthService {

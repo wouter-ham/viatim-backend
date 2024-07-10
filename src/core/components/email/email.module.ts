@@ -1,4 +1,4 @@
-import { EmailService } from './email/email.service';
+import { EmailService } from './email.service';
 import { EmailModuleOptions } from './email-module.options';
 import { DynamicModule } from '@nestjs/common';
 

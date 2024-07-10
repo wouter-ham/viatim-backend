@@ -13,17 +13,17 @@ import {
 
 import { User } from '@viatim/core/models';
 import { IUser } from '@viatim/core/interfaces/user';
-import { UsersService } from '@viatim/core/services';
 
-import { AuthService } from '@viatim/auth/auth/auth.service';
-import { LocalAuthGuard } from '@viatim/auth/local-auth.guard';
-import { Roles } from '@viatim/auth/role.decorator';
-import { JwtAuthGuard } from '@viatim/auth/jwt-auth.guard';
-import { RolesGuard } from '@viatim/auth/roles.guard';
+import { AuthService } from '@viatim/core/components/auth/auth.service';
+import { LocalAuthGuard } from '@viatim/core/components/auth/helpers/local-auth.guard';
+import { Roles } from '@viatim/core/components/auth/helpers/role.decorator';
+import { JwtAuthGuard } from '@viatim/core/components/auth/helpers/jwt-auth.guard';
+import { RolesGuard } from '@viatim/core/components/auth/helpers/roles.guard';
 import { QueryBuilder } from 'objection';
-import { EmailService } from '@viatim/email/email/email.service';
+import { EmailService } from '@viatim/core/components/email/email.service';
 import * as process from 'node:process';
 import { v4 } from 'uuid';
+import { UsersService } from '@viatim/core/components/users/users.service';
 
 @Controller('users')
 export class UsersController {

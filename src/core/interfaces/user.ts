@@ -7,4 +7,7 @@ export interface IUser {
   email: string;
   hash: string;
   fullName: string;
+  created: Date;
+  updated: Date;
+  deleted?: Date;
 }
