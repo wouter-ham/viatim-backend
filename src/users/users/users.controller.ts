@@ -1,4 +1,15 @@
-import { Body, Controller, Get, HttpCode, NotFoundException, Param, Post, Request, UseGuards } from '@nestjs/common';
+import {
+  BadRequestException,
+  Body,
+  Controller,
+  Get,
+  HttpCode,
+  NotFoundException,
+  Param,
+  Post,
+  Request,
+  UseGuards,
+} from '@nestjs/common';
 
 import { User } from '@viatim/core/models';
 import { IUser } from '@viatim/core/interfaces/user';
@@ -12,6 +23,7 @@ import { RolesGuard } from '@viatim/auth/roles.guard';
 import { QueryBuilder } from 'objection';
 import { EmailService } from '@viatim/email/email/email.service';
 import * as process from 'node:process';
+import { v4 } from 'uuid';
 
 @Controller('users')
 export class UsersController {
@@ -30,6 +42,24 @@ export class UsersController {
   } {
     const user = (req as any).user;
     return this.authService.login(user);
+  }
+
+  @Post('register')
+  @HttpCode(200)
+  public async register(@Body() user: User): Promise<{
+    access_token: string;
+    type: string;
+  }> {
+    const existingUser: User = await this.usersService.findByEmail(user.email);
+
+    if (existingUser) {
+      throw new BadRequestException('Gebruiker bestaat al');
+    }
+
+    user.id = v4();
+    user.role = 'user';
+
+    return await this.authService.register(user);
   }
 
   @Post('refresh')

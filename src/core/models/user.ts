@@ -4,8 +4,7 @@ import { IUser } from '../interfaces/user';
 export class User extends Model implements IUser {
   static tableName = 'users';
 
-  static relationMappings = {
-  };
+  static relationMappings = {};
 
   public id: string;
 
@@ -15,7 +14,7 @@ export class User extends Model implements IUser {
 
   public lastName: string;
 
-  public role: string;
+  public role: 'user' | 'admin';
 
   public email: string;
 
@@ -29,7 +28,7 @@ export class User extends Model implements IUser {
     return this.middleName
       ? `${this.firstName} ${this.middleName} ${this.lastName}`
       : `${this.firstName} ${this.lastName}`;
-  };
+  }
 
   $formatJson(json: any) {
     json = super.$formatJson(json);

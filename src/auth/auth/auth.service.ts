@@ -11,8 +11,7 @@ export class AuthService {
   constructor(
     private usersService: UsersService,
     private jwtService: JwtService,
-  ) {
-  }
+  ) {}
 
   public async validateUser(email: string, password: string): Promise<IUser> {
     const user: User = (await this.usersService.findByEmail(email).whereNull('deleted')) as User;
@@ -34,7 +33,7 @@ export class AuthService {
     return this.jwtService.sign(payload, options);
   }
 
-  public login(user: IUser): { access_token: string, type: string } {
+  public login(user: IUser): { access_token: string; type: string } {
     const payload = {
       email: user.email,
       firstName: user.firstName,
@@ -48,6 +47,12 @@ export class AuthService {
       access_token: this.sign(payload),
       type: 'bearer',
     };
+  }
+
+  public async register(data: IUser): Promise<{ access_token: string; type: string }> {
+    const user: User = await User.query().upsertGraphAndFetch(data, { insertMissing: true });
+
+    return this.login(user);
   }
 
   public async refresh(token: string) {
