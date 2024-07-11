@@ -1,6 +1,5 @@
 export * from './helpers/jwt.strategy';
 export * from './helpers/jwt-auth.guard';
-export * from './helpers/jwt-query.strategy';
 export * from './helpers/jwt-token.dto';
 export * from './helpers/local.strategy';
 export * from './helpers/local-auth.guard';

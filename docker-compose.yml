@@ -1,5 +1,5 @@
 services:
-  main:
+  viatim:
     container_name: viatim-backend
     platform: linux/amd64
     image: viatim-main
@@ -11,7 +11,7 @@ services:
       - /app/dist
       - /app/node_modules
     ports:
-      - "3000:3000"
+      - "3001:3000"
     command: npm run start:dev
     env_file:
       - .env.dev

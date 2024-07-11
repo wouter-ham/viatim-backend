@@ -8,21 +8,23 @@ export class PostsService {
   public constructor() {}
 
   public findAll(): QueryBuilder<Post, Post[]> {
-    return Post.query();
+    return Post.query().where({ deleted: null }).withGraphFetched('user');
   }
 
   public findById(id: string): QueryBuilder<Post, Post> {
-    return Post.query().findById(id).withGraphFetched('user');
+    return Post.query().where({ deleted: null }).findById(id).withGraphFetched('user');
   }
 
   public findByUserId(userId: string): QueryBuilder<Post, Post[]> {
-    return Post.query().where({ userId });
+    return Post.query().where({ deleted: null }).where({ userId });
   }
 
   public upsert(data: IPost): QueryBuilder<Post, Post> {
-    return Post.query().upsertGraphAndFetch(data, {
-      insertMissing: true,
-    });
+    return Post.query()
+      .upsertGraphAndFetch(data, {
+        insertMissing: true,
+      })
+      .withGraphFetched('user');
   }
 
   public deleteById(id: string): QueryBuilder<Post, number> {
