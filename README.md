@@ -11,6 +11,15 @@ After installing the dependencies, you can start the docker by running `docker c
 When the Docker container starts up it will automatically create a database. To create the tables in the database, you need to run `npm run knex:migrate:latest`
 Optionally you can also run `npm run knex:cli seed:run` to seed the database with test users.
 
+### Email
+When opening the `.env.dev`/`.env.prod` config file, you will see these configurations:
+```dotenv
+EMAIL_HOST='smtp.mailtrap.io'
+EMAIL_PORT='2525'
+EMAIL_USER=''
+EMAIL_PASS=''
+```
+To test receiving emails, I recommend either creating your own mailtrap.io account or using other email services.
 
 # Usage
 ### Frontend
